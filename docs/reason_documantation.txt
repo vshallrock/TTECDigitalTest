@@ -1,0 +1,44 @@
+Q) Record your reasons for implementing the solution the way you did, struggles you
+faced and problems you overcame.
+ANS:
+Reasons for Implementing the Solution:
+
+I chose TypeScript with AWS CDK because it provides a high-level abstraction for managing AWS resources, making infrastructure as code easier to write and maintain.
+Lambda functions are used for their scalability and event-driven nature, which fits well for handling phone number conversions and integrating with Amazon Connect.
+DynamoDB is chosen as the database for its flexibility, scalability, and low latency.
+Amazon Connect is utilized for managing contact flows and interacting with callers.
+
+Struggles Faced and Problems Overcame:
+
+Integrating different AWS services and ensuring proper permissions can sometimes be challenging. Properly configuring IAM policies and permissions was crucial.
+Setting up the Amazon Connect contact flow required understanding the Connect service and its configuration options.
+
+Q) What shortcuts did you take that would be a bad practice in production?
+
+ANS:
+Using cdk.RemovalPolicy.DESTROY for DynamoDB tables can lead to accidental data loss in production. 
+A safer approach would be to use cdk.RemovalPolicy.RETAIN or implement a data retention strategy.
+Hardcoding values like instance IDs, contact flow IDs, and prompt IDs directly in the code can lead to maintenance issues. 
+These should ideally be parameterized or fetched dynamically from a configuration store.
+
+Q) What would you have done with more time? We know you have a life. :-)
+ANS:
+Implement more error handling and logging for better monitoring and troubleshooting.
+Add input validation and sanitization to prevent malicious inputs.
+Write unit tests and integration tests for better code quality and reliability.
+Implement CI/CD pipelines for automated deployment and testing.
+
+Q) What other considerations would you make before making our toy app into
+something that would be ready for high volumes of traffic, potential attacks from bad
+folks, etc.
+ANS:
+Considerations for Scaling and Security:
+
+Load testing the system to ensure it can handle high volumes of traffic.
+Implementing throttling and rate limiting mechanisms to prevent abuse and protect against potential attacks.
+Enabling encryption at rest and in transit for sensitive data stored in DynamoDB.
+Configuring AWS WAF (Web Application Firewall) and AWS Shield for protection against DDoS attacks.
+Implementing IAM best practices, such as least privilege principles, to ensure proper access control.
+Monitoring system metrics and logs using services like AWS CloudWatch for proactive detection of issues and anomalies.
+
+For Architecture refer the draw.io File.
